@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mzl.userintegral.mapper.SignMapper">
+
+    <!--分页模糊查询用户的签到历史表-->
+    <select id="selectSignByPage" resultType="com.mzl.integralcommon.vo.SignVO">
+        select s.*, a.activity_name from sign s, activity a
+        <where>
+           s.user_id = #{pageDTO.userId} and s.activity_id = a.activity_id
+           <if test="pageDTO.activityName != '' and pageDTO.activityName != null">
+                and a.activity_name like '${pageDTO.activityName}%'
+           </if>
+            <if test="pageDTO.dayTime != '' and pageDTO.dayTime != null">
+                and DATE_FORMAT(DATE_ADD(s.sign_time, interval 8 HOUR), '%Y-%m-%d') = #{pageDTO.dayTime}
+            </if>
+        </where>
+        order by s.sign_time desc
+    </select>
+
+    <!--查询某用户打卡签到此次活动的次数-->
+    <select id="countNumToday" resultType="java.lang.Integer">
+        select count(1) from sign where user_id = #{userId} and activity_id = #{activityId} and DATE_FORMAT(DATE_ADD(sign_time, interval 8 HOUR), '%Y-%m-%d') = #{now}
+    </select>
+
+</mapper>

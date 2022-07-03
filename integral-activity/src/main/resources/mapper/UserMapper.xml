@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mzl.integralactivity.mapper.ActivityMapper">
+
+    <!--查询所有的未过期活动-->
+    <select id="selectValidActivity" resultType="com.mzl.integralcommon.entity.Activity">
+        select * from activity where DATE_ADD(end_time, interval 8 HOUR ) > #{now}
+    </select>
+
+</mapper>
