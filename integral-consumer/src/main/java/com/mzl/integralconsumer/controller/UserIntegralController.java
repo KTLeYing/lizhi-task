@@ -38,9 +38,15 @@ public class UserIntegralController {
     }
 
     @GetMapping("/selectIntegralById")
-    @ApiOperation(value = "根据用户id查询用户总积分")
+    @ApiOperation(value = "根据用户id查询用户总积分【通过数据库查询，性能低，不推荐】")
     public RetResult selectIntegralById(Integer userId){
         return userService.selectIntegralById(userId);
+    }
+
+    @GetMapping("/selectIntegralById1")
+    @ApiOperation(value = "根据用户id查询用户总积分【通过Redis查询，性能高】")
+    public RetResult selectIntegralById1(Integer userId){
+        return userService.selectIntegralById1(userId);
     }
 
     @GetMapping("/selectSignByPage")

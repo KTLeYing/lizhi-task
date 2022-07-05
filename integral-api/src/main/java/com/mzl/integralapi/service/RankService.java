@@ -20,4 +20,9 @@ public interface RankService extends IService<User> {
      */
     RetResult rankByIntegral();
 
+    /**
+     * @param userId
+     * @return
+     */
+    RetResult zSetAdd(Integer userId);
 }

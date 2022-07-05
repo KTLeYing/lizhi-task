@@ -3,7 +3,6 @@ package com.mzl.integralconsumer.controller;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.mzl.integralapi.service.RankService;
 import com.mzl.integralcommon.response.RetResult;
-import com.mzl.integralconsumer.annotation.AccessLimit;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,5 +27,14 @@ public class IntegralRankController {
     public RetResult rankByIntegral(){
         return rankService.rankByIntegral();
     }
+
+    @GetMapping("/zSetAdd")
+    @ApiOperation(value = "zSet测试")
+    public RetResult zSetAdd(Integer userId){
+        return rankService.zSetAdd(userId);
+    }
+
+
+
 
 }

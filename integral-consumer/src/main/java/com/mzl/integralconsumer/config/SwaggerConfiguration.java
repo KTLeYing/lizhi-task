@@ -27,7 +27,7 @@ public class SwaggerConfiguration {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.mzl.dubboconsumer.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.mzl.integralconsumer.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }
@@ -36,7 +36,7 @@ public class SwaggerConfiguration {
         return new ApiInfoBuilder()
                 .title("Swagger接口文档")
                 .description("Swagger测试")
-                .termsOfServiceUrl("http://localhost:8002/swagger-ui.html")
+                .termsOfServiceUrl("http://localhost:8880/swagger-ui.html")
                 .version("2.0")
                 .build();
     }

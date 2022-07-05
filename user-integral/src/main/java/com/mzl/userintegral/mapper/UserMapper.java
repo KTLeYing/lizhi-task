@@ -20,4 +20,10 @@ public interface UserMapper extends BaseMapper<User> {
      * @return
      */
     Double selectIntegralById(Integer userId);
+
+    /**
+     * 修改数据库的用户总积分(与Redis保持一致)
+     * @param userId
+     */
+    void updateIntegral(Integer userId);
 }

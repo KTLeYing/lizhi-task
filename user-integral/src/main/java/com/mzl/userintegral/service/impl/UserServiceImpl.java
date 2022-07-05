@@ -58,13 +58,29 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     /**
-     * 根据用户id查询用户总积分
+     * 根据用户id查询用户总积分【通过数据库查询，性能低，不推荐】
      * @param userId
      * @return
      */
     @Override
     public RetResult selectIntegralById(Integer userId){
         Double integralNum = userMapper.selectIntegralById(userId);
+        return RetResult.success(integralNum);
+    }
+
+    /**
+     * 根据用户id查询用户总积分【通过Redis查询，性能高】
+     * @param userId
+     * @return
+     */
+    @Override
+    public RetResult selectIntegralById1(Integer userId) {
+        Double integralNum = redisTemplate.opsForZSet().score(RedisKeyConstant.TOTAL_INTEGRAL_KEY, userId);
+        //如果redis没有，则查询数据库(万一redis数据的丢失)
+        if (integralNum == null){
+            log.info("根据用户id查询用户总积分----->Redis中没有，查数据库了...");
+            integralNum = userMapper.selectIntegralById(userId);
+        }
         return RetResult.success(integralNum);
     }
 
@@ -106,8 +122,16 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
                     sign.setSignTime(nowDate);
                     sign.setNote("我签到了");
                     signMapper.insert(sign);
-                    //添加用户的zset的积分（累计）
-                    redisTemplate.opsForZSet().add(RedisKeyConstant.TOTAL_INTEGRAL_KEY, userId, redisTemplate.opsForZSet().score(RedisKeyConstant.TOTAL_INTEGRAL_KEY, userId) + 5);
+                    //修改数据库的用户总积分(与Redis保持一致)
+                    userMapper.updateIntegral(userId);
+                    //添加用户Redis的zset的积分（累计）
+                    Double score = redisTemplate.opsForZSet().score(RedisKeyConstant.TOTAL_INTEGRAL_KEY, userId);
+                    if (score == null){
+                        //首次签到
+                        redisTemplate.opsForZSet().add(RedisKeyConstant.TOTAL_INTEGRAL_KEY, userId, 5);
+                    }else {
+                        redisTemplate.opsForZSet().add(RedisKeyConstant.TOTAL_INTEGRAL_KEY, userId, redisTemplate.opsForZSet().score(RedisKeyConstant.TOTAL_INTEGRAL_KEY, userId) + 5);
+                    }
                     //处理完后释放锁(一定要，不然死锁)
                     redissonUtil.unlock(RedisKeyConstant.REDISSON_KEY);
                     log.info("用户活动签到----->线程:{}，=============处理完，释放锁================" + Thread.currentThread().getName());
@@ -122,5 +146,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             return RetResult.success(RetCodeEnum.SIGN_FAIL);
         }
     }
+
 
 }

@@ -22,7 +22,7 @@ public interface UserService extends IService<User> {
     RetResult selectUserById(Integer userId);
 
     /**
-     * 根据用户id查询用户总积分
+     * 根据用户id查询用户总积分【通过数据库查询，性能低，不推荐】
      * @param userId
      * @return
      */
@@ -35,4 +35,12 @@ public interface UserService extends IService<User> {
      * @return
      */
     RetResult activitySign(Integer userId, Integer activityId);
+
+    /**
+     * 根据用户id查询用户总积分【通过Redis查询，性能高】
+     * @param userId
+     * @return
+     */
+    RetResult selectIntegralById1(Integer userId);
+
 }
