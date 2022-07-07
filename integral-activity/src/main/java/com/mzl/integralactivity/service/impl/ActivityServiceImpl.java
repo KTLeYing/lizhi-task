@@ -73,11 +73,23 @@ public class ActivityServiceImpl extends ServiceImpl<ActivityMapper, Activity> i
     }
 
     /**
-     * 异步线程池来发放积分
+     * 异步线程池来发放积分【存Redis】
      * @param activity
      */
     @Async("issueIntegralExecutor")
     public void asyncIssueIntegral(Activity activity){
+        //发送积分的key为 issue:integral:活动id  值为 发送的积分数
+        String key = RedisKeyConstant.ISSUE_INTEGRAL_KEY_PREFIX + activity.getActivityId();
+        //有效期为300s(5分钟)
+        redisTemplate.opsForValue().set(key, 100, 300, TimeUnit.SECONDS);
+    }
+
+    /**
+     * 异步线程池来发放积分【存Kafka】
+     * @param activity
+     */
+    @Async("issueIntegralExecutor")
+    public void asyncIssueIntegral1(Activity activity){
         //发送积分的key为 issue:integral:活动id  值为 发送的积分数
         String key = RedisKeyConstant.ISSUE_INTEGRAL_KEY_PREFIX + activity.getActivityId();
         //有效期为300s(5分钟)

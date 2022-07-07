@@ -8,7 +8,7 @@
 **HOST**:localhost:8880
 
 
-**联系人**: mzl
+**联系人**:
 
 
 **Version**:2.0
@@ -16,130 +16,6 @@
 **接口路径**：/v2/api-docs
 
 
-# integral-rank-controller
-    
-
-## 用户积分排行榜
-
-
-**接口描述**:
-
-
-**接口地址**:`/integralRank/rankByIntegral`
-
-
-**请求方式**：`GET`
-
-
-**consumes**:``
-
-
-**produces**:`["*/*"]`
-
-
-
-**请求参数**：
-暂无
-
-
-
-**响应示例**:
-
-```json
-{
-	"code": 0,
-	"data": {},
-	"datetime": "",
-	"msg": "",
-	"timestamp": 0
-}
-```
-
-**响应参数**:
-
-
-| 参数名称         | 参数说明                             |    类型 |  schema |
-| ------------ | -------------------|-------|----------- |
-|code| 返回码  |integer(int32)  | integer(int32)   |
-|data| 返回数据  |object  |    |
-|datetime| 返回时间  |string  |    |
-|msg| 返回消息  |string  |    |
-|timestamp| 时间戳  |integer(int64)  | integer(int64)   |
-
-
-
-
-
-**响应状态**:
-
-
-| 状态码         | 说明                            |    schema                         |
-| ------------ | -------------------------------- |---------------------- |
-| 200 | OK  |RetResult|
-| 401 | Unauthorized  ||
-| 403 | Forbidden  ||
-| 404 | Not Found  ||
-## zSet测试
-
-
-**接口描述**:
-
-
-**接口地址**:`/integralRank/zSetAdd`
-
-
-**请求方式**：`GET`
-
-
-**consumes**:``
-
-
-**produces**:`["*/*"]`
-
-
-
-**请求参数**：
-
-| 参数名称         | 参数说明     |     in |  是否必须      |  数据类型  |  schema  |
-| ------------ | -------------------------------- |-----------|--------|----|--- |
-|userId| userId  | query | false |integer  |    |
-
-**响应示例**:
-
-```json
-{
-	"code": 0,
-	"data": {},
-	"datetime": "",
-	"msg": "",
-	"timestamp": 0
-}
-```
-
-**响应参数**:
-
-
-| 参数名称         | 参数说明                             |    类型 |  schema |
-| ------------ | -------------------|-------|----------- |
-|code| 返回码  |integer(int32)  | integer(int32)   |
-|data| 返回数据  |object  |    |
-|datetime| 返回时间  |string  |    |
-|msg| 返回消息  |string  |    |
-|timestamp| 时间戳  |integer(int64)  | integer(int64)   |
-
-
-
-
-
-**响应状态**:
-
-
-| 状态码         | 说明                            |    schema                         |
-| ------------ | -------------------------------- |---------------------- |
-| 200 | OK  |RetResult|
-| 401 | Unauthorized  ||
-| 403 | Forbidden  ||
-| 404 | Not Found  ||
 # 用户积分模块接口
 ## 用户活动签到
 
@@ -397,6 +273,130 @@
 
 
 **接口地址**:`/userIntegral/selectUserById`
+
+
+**请求方式**：`GET`
+
+
+**consumes**:``
+
+
+**produces**:`["*/*"]`
+
+
+
+**请求参数**：
+
+| 参数名称         | 参数说明     |     in |  是否必须      |  数据类型  |  schema  |
+| ------------ | -------------------------------- |-----------|--------|----|--- |
+|userId| userId  | query | false |integer  |    |
+
+**响应示例**:
+
+```json
+{
+	"code": 0,
+	"data": {},
+	"datetime": "",
+	"msg": "",
+	"timestamp": 0
+}
+```
+
+**响应参数**:
+
+
+| 参数名称         | 参数说明                             |    类型 |  schema |
+| ------------ | -------------------|-------|----------- |
+|code| 返回码  |integer(int32)  | integer(int32)   |
+|data| 返回数据  |object  |    |
+|datetime| 返回时间  |string  |    |
+|msg| 返回消息  |string  |    |
+|timestamp| 时间戳  |integer(int64)  | integer(int64)   |
+
+
+
+
+
+**响应状态**:
+
+
+| 状态码         | 说明                            |    schema                         |
+| ------------ | -------------------------------- |---------------------- |
+| 200 | OK  |RetResult|
+| 401 | Unauthorized  ||
+| 403 | Forbidden  ||
+| 404 | Not Found  ||
+# 积分排行模块接口
+
+
+## 用户积分排行榜
+
+
+**接口描述**:
+
+
+**接口地址**:`/integralRank/rankByIntegral`
+
+
+**请求方式**：`GET`
+
+
+**consumes**:``
+
+
+**produces**:`["*/*"]`
+
+
+
+**请求参数**：
+暂无
+
+
+
+**响应示例**:
+
+```json
+{
+	"code": 0,
+	"data": {},
+	"datetime": "",
+	"msg": "",
+	"timestamp": 0
+}
+```
+
+**响应参数**:
+
+
+| 参数名称         | 参数说明                             |    类型 |  schema |
+| ------------ | -------------------|-------|----------- |
+|code| 返回码  |integer(int32)  | integer(int32)   |
+|data| 返回数据  |object  |    |
+|datetime| 返回时间  |string  |    |
+|msg| 返回消息  |string  |    |
+|timestamp| 时间戳  |integer(int64)  | integer(int64)   |
+
+
+
+
+
+**响应状态**:
+
+
+| 状态码         | 说明                            |    schema                         |
+| ------------ | -------------------------------- |---------------------- |
+| 200 | OK  |RetResult|
+| 401 | Unauthorized  ||
+| 403 | Forbidden  ||
+| 404 | Not Found  ||
+## 添加用户积分(只用于个人测试)
+
+
+**接口描述**:
+
+
+**接口地址**:`/integralRank/zSetAdd`
 
 
 **请求方式**：`GET`

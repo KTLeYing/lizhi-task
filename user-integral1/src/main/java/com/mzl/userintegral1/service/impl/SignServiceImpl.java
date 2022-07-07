@@ -1,4 +1,4 @@
-package com.mzl.userintegral.service.impl;
+package com.mzl.userintegral1.service.impl;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -9,7 +9,7 @@ import com.mzl.integralcommon.dto.PageDTO;
 import com.mzl.integralcommon.entity.Sign;
 import com.mzl.integralcommon.response.RetResult;
 import com.mzl.integralcommon.vo.SignVO;
-import com.mzl.userintegral.mapper.SignMapper;
+import com.mzl.userintegral1.mapper.SignMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,7 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author mzl
  * @since 2022-07-03
  */
-@Service(timeout = 3000, weight = 200)
+@Service(timeout = 3000, weight = 100)
 @Transactional
 @Slf4j
 public class SignServiceImpl extends ServiceImpl<SignMapper, Sign> implements SignService {

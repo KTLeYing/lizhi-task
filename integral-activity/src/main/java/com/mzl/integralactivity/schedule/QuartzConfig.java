@@ -33,7 +33,7 @@ public class QuartzConfig {
         return TriggerBuilder.newTrigger()
                 .withIdentity("积分发放任务","组1")
                 //每10分钟秒执行一次(发放积分)
-                .withSchedule(CronScheduleBuilder.cronSchedule("0 0/2 * * * ?"))
+                .withSchedule(CronScheduleBuilder.cronSchedule("0 0/10 * * * ?"))
                 .forJob(integralIssueJobDetail()) //这个定时任务要执行的是哪个调度器
                 .build();
     }

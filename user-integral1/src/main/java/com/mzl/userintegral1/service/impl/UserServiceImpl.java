@@ -1,4 +1,4 @@
-package com.mzl.userintegral.service.impl;
+package com.mzl.userintegral1.service.impl;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -8,9 +8,9 @@ import com.mzl.integralcommon.entity.Sign;
 import com.mzl.integralcommon.entity.User;
 import com.mzl.integralcommon.enums.RetCodeEnum;
 import com.mzl.integralcommon.response.RetResult;
-import com.mzl.userintegral.mapper.SignMapper;
-import com.mzl.userintegral.mapper.UserMapper;
-import com.mzl.userintegral.utlils.RedissonUtil;
+import com.mzl.userintegral1.mapper.SignMapper;
+import com.mzl.userintegral1.mapper.UserMapper;
+import com.mzl.userintegral1.utlils.RedissonUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -29,7 +29,7 @@ import java.util.concurrent.TimeUnit;
  * @author mzl
  * @since 2022-07-01
  */
-@Service(timeout = 3000, weight = 200)
+@Service(timeout = 3000, weight = 100)
 @Transactional
 @Slf4j
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {

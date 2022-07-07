@@ -25,10 +25,10 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(value = "用户积分模块", tags = "用户积分模块接口")
 public class UserIntegralController {
 
-    @Reference
+    @Reference(check = false, loadbalance = "random", cluster = "failover", retries = 2, timeout = 3000, mock = "com.mzl.integralconsumer.mock.UserServiceMock")
     private UserService userService;
 
-    @Reference
+    @Reference(check = false, loadbalance = "random", cluster = "failover", retries = 2, timeout = 3000, mock = "com.mzl.integralconsumer.mock.SignServiceMock")
     private SignService signService;
 
     @GetMapping("/selectUserById")

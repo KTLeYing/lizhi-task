@@ -55,7 +55,7 @@ public class RankServiceImpl extends ServiceImpl<UserMapper, User> implements Ra
         return RetResult.success(rankList);
     }
 
-    /**
+    /**添加用户积分
      * @param userId
      * @return
      */

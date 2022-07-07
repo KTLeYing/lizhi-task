@@ -180,6 +180,13 @@
             <artifactId>spring-boot-starter-quartz</artifactId>
         </dependency>
 
+        <!--kafka-->
+        <!--kafka-->
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
+        </dependency>
+
     </dependencies>
 
     <!--dependencyManagement用于管理依赖版本号-->

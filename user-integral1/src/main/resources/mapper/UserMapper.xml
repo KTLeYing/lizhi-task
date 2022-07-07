@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mzl.userintegral1.mapper.UserMapper">
+
+    <!--修改数据库的用户总积分(与Redis保持一致)-->
+    <update id="updateIntegral">
+        update user set integral_num = integral_num + 5 where user_id = #{userId}
+    </update>
+
+    <!--根据用户id查询用户总积分-->
+    <select id="selectIntegralById" resultType="java.lang.Double">
+        select integral_num from user where user_id = #{userId}
+    </select>
+
+</mapper>
